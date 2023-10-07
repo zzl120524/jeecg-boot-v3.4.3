@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.demo.alarmList.mapper.AlarmListMapper">
+    <select id="pagelist" resultType="org.jeecg.modules.demo.alarmList.entity.AlarmList">
+        SELECT
+        alarm_list.id
+        ,alarm_list.create_by
+        ,alarm_list.create_time
+        ,alarm_list.update_by
+        ,alarm_list.update_time
+        ,alarm_list.sys_org_code
+        ,alarm_list.fac_id
+        ,alarm_list.upload_type
+        ,alarm_list.upload_length
+        ,alarm_list.malformed_type
+        ,alarm_list.packetlen
+        ,alarm_list.packet
+        FROM
+        alarm_list
+        <where>
+            <if test="param.id != null and param.id != ''">
+                AND alarm_list.id = #{param.id}
+            </if>
+            <if test="param.facId != null ">
+                AND alarm_list.fac_id = #{param.facId}
+            </if>
+            <if test="param.malformedType != null ">
+                AND alarm_list.malformed_type = #{param.malformedType}
+            </if>
+            <if test="param.startTime != null and param.endTime != null">
+                AND alarm_list.create_time between #{param.startTime} and #{param.endTime}
+            </if>
+
+        </where>
+        ORDER BY
+        alarm_list.create_time DESC
+    </select>
+
+</mapper>

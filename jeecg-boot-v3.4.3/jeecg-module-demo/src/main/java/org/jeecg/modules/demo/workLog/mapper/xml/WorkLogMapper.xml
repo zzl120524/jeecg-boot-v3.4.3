@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.demo.workLog.mapper.WorkLogMapper">
+
+    <select id="pagelist" resultType="org.jeecg.modules.demo.workLog.entity.WorkLog">
+        SELECT
+        work_log.id
+        ,work_log.create_time
+        ,work_log.operating
+        ,work_log.operating_result
+        FROM
+        work_log
+        <where>
+            <if test="param.id != null and param.id != ''">
+                AND work_log.id = #{param.id}
+            </if>
+            <if test="param.operating != null and param.operating != ''">
+                AND work_log.operating = #{param.operating}
+            </if>
+            <if test="param.operatingResult != null and param.operatingResult != ''">
+                AND work_log.operating_result = #{param.operatingResult}
+            </if>
+            <if test="param.startTime != null and param.endTime != null">
+                AND work_log.create_time between #{param.startTime} and #{param.endTime}
+            </if>
+
+        </where>
+        ORDER BY
+        work_log.create_time DESC
+    </select>
+
+</mapper>

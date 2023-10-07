@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: jeecg-system
+  profiles:
+    active: '@profile.name@'
+##高安全区
+ftpName: ftpuser
+ftpPasswordRoot: ftp123ftp
+ftpHost: 192.168.10.11
+ftpPort: 21
+ftpPath: D:\var\ftp\ftpuser\upload
+#ftpPath: /var/ftp/ftpuser/upload

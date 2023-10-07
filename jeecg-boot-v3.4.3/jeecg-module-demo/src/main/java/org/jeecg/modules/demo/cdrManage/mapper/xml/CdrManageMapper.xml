@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.demo.cdrManage.mapper.CdrManageMapper">
+
+    <select id="pageList" resultType="org.jeecg.modules.demo.cdrManage.entity.CdrManage">
+        SELECT
+        *
+        FROM
+        cdr_manage
+        <where>
+            <if test="param.id != null and param.id != ''">
+                AND cdr_manage.id = #{param.id}
+            </if>
+            <if test="param.createBy != null and param.createBy != ''">
+                AND cdr_manage.create_by = #{param.createBy}
+            </if>
+            <if test="param.updateBy != null and param.updateBy != ''">
+                AND cdr_manage.update_by = #{param.updateBy}
+            </if>
+            <if test="param.sysOrgCode != null and param.sysOrgCode != ''">
+                AND cdr_manage.sys_org_code = #{param.sysOrgCode}
+            </if>
+            <if test="param.facId != null ">
+                AND cdr_manage.fac_id = #{param.facId}
+            </if>
+            <if test="param.fileSeq != null and param.fileSeq != ''">
+                AND cdr_manage.file_seq = #{param.fileSeq}
+            </if>
+
+            <if test="param.cdrNo != null ">
+                AND cdr_manage.cdr_no = #{param.cdrNo}
+            </if>
+            <if test="param.relationId != null ">
+                AND cdr_manage.relation_id = #{param.relationId}
+            </if>
+            <if test="param.callingPartyNumber != null and param.callingPartyNumber != ''">
+                AND cdr_manage.calling_party_number = #{param.callingPartyNumber}
+            </if>
+            <if test="param.calledPartyNumber != null and param.calledPartyNumber != ''">
+                AND cdr_manage.called_party_number = #{param.calledPartyNumber}
+            </if>
+            <if test="param.paraFlag != null">
+                AND cdr_manage.para_flag = #{param.paraFlag}
+            </if>
+            <if test="param.callingLocation != null and param.callingLocation != ''">
+                AND cdr_manage.calling_location = #{param.callingLocation}
+            </if>
+            <if test="param.callingLocationType != null ">
+                AND cdr_manage.calling_location_type = #{param.callingLocationType}
+            </if>
+            <if test="param.calledLocation != null and param.calledLocation != ''">
+                AND cdr_manage.called_location = #{param.calledLocation}
+            </if>
+            <if test="param.calledLocationType != null ">
+                AND cdr_manage.called_location_type = #{param.calledLocationType}
+            </if>
+            <if test="param.fwHistoryInfoNum != null and param.fwHistoryInfoNum != ''">
+                AND cdr_manage.fw_history_info_num = #{param.fwHistoryInfoNum}
+            </if>
+            <if test="param.fwHistoryInfoCause != null and param.fwHistoryInfoCause != ''">
+                AND cdr_manage.fw_history_info_cause = #{param.fwHistoryInfoCause}
+            </if>
+            <if test="param.bwHistoryInfoNum != null and param.bwHistoryInfoNum != ''">
+                AND cdr_manage.bw_history_info_num = #{param.bwHistoryInfoNum}
+            </if>
+            <if test="param.bwHistoryInfoCause != null and param.bwHistoryInfoCause != ''">
+                AND cdr_manage.bw_history_info_cause = #{param.bwHistoryInfoCause}
+            </if>
+            <if test="param.cdrStartTime != null and param.cdrStartTime != ''">
+                AND cdr_manage.cdr_start_time = #{param.cdrStartTime}
+            </if>
+            <if test="param.alertTime != null and param.alertTime != ''">
+                AND cdr_manage.alert_time = #{param.alertTime}
+            </if>
+            <if test="param.answerTime != null and param.answerTime != ''">
+                AND cdr_manage.answer_time = #{param.answerTime}
+            </if>
+            <if test="param.releaseTime != null and param.releaseTime != ''">
+                AND cdr_manage.release_time = #{param.releaseTime}
+            </if>
+            <if test="param.releaseCause != null ">
+                AND cdr_manage.release_cause = #{param.releaseCause}
+            </if>
+
+            <if test="param.tailEndTime != null and param.tailEndTime != ''">
+                AND cdr_manage.tail_end_time = #{param.tailEndTime}
+            </if>
+            <if test="param.fileCloseCause != null and param.fileCloseCause != ''">
+                AND cdr_manage.file_close_cause = #{param.fileCloseCause}
+            </if>
+            <if test="param.cdrFileId != null and param.cdrFileId != ''">
+                AND cdr_manage.cdr_file_id = #{param.cdrFileId}
+            </if>
+        </where>
+        ORDER BY
+        cdr_manage.create_time DESC
+    </select>
+
+</mapper>

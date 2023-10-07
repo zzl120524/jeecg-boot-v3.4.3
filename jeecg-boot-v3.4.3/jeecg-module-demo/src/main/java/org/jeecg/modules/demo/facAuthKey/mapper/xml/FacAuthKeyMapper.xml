@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.demo.facAuthKey.mapper.FacAuthKeyMapper">
+
+    <select id="pagelist" resultType="org.jeecg.modules.demo.facAuthKey.entity.FacAuthKey">
+        SELECT
+        fac_auth_key.id
+        ,fac_auth_key.create_by
+        ,fac_auth_key.create_time
+        ,fac_auth_key.update_by
+        ,fac_auth_key.update_time
+        ,fac_auth_key.sys_org_code
+        ,fac_auth_key.fac_id
+        ,fac_auth_key.auth_key
+        ,fac_auth_key.flag
+        ,fac_auth_key.fac_name
+        ,fac_auth_key.fac_type
+        FROM
+        fac_auth_key
+        <where>
+            <if test="param.id != null and param.id != ''">
+                AND fac_auth_key.id = #{param.id}
+            </if>
+            <if test="param.createBy != null and param.createBy != ''">
+                AND fac_auth_key.create_by = #{param.createBy}
+            </if>
+            <if test="param.updateBy != null and param.updateBy != ''">
+                AND fac_auth_key.update_by = #{param.updateBy}
+            </if>
+            <if test="param.sysOrgCode != null and param.sysOrgCode != ''">
+                AND fac_auth_key.sys_org_code = #{param.sysOrgCode}
+            </if>
+            <if test="param.facId != null ">
+                AND fac_auth_key.fac_id = #{param.facId}
+            </if>
+            <if test="param.facType != null ">
+                AND fac_auth_key.fac_type = #{param.facType}
+            </if>
+            <if test="param.facName != null and param.facName != ''">
+                AND fac_auth_key.fac_name like concat('%',#{param.facName},'%')
+            </if>
+
+        </where>
+        ORDER BY
+        fac_auth_key.create_time DESC
+    </select>
+
+    <select id="getList" resultType="org.jeecg.modules.demo.facAuthKey.entity.FacAuthKey">
+        SELECT
+        fac_auth_key.id
+        ,fac_auth_key.create_by
+        ,fac_auth_key.create_time
+        ,fac_auth_key.update_by
+        ,fac_auth_key.update_time
+        ,fac_auth_key.sys_org_code
+        ,fac_auth_key.fac_id
+        ,fac_auth_key.auth_key
+        ,fac_auth_key.flag
+        ,fac_auth_key.fac_name
+        ,fac_auth_key.fac_type
+        FROM
+        fac_auth_key
+        where 1 = 1
+        ORDER BY
+        fac_auth_key.create_time DESC
+    </select>
+
+    <select id="allFacId" resultType="java.lang.Integer">
+        SELECT
+        fac_auth_key.fac_id
+        FROM
+        fac_auth_key
+        WHERE 1=1
+
+    </select>
+
+</mapper>

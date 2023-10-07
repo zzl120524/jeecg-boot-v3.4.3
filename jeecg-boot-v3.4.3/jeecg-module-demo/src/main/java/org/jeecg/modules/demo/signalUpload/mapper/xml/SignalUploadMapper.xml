@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.demo.signalUpload.mapper.SignalUploadMapper">
+
+    <select id="pageList" resultType="org.jeecg.modules.demo.signalUpload.entity.SignalUpload">
+        SELECT
+         signal_upload.id
+        ,signal_upload.create_by
+        ,signal_upload.create_time
+        ,signal_upload.update_by
+        ,signal_upload.update_time
+        ,signal_upload.sys_org_code
+        ,signal_upload.ver
+        ,signal_upload.fac_id
+        ,signal_upload.upload_type
+        ,signal_upload.upload_length
+        ,signal_upload.trace_user
+        ,signal_upload.msg_type
+        ,signal_upload.msg_name
+        ,signal_upload.direction
+        ,signal_upload.signal_length
+        ,signal_upload.sigal
+        ,signal_upload.traffice_direction
+        ,signal_upload.codec
+        ,signal_upload.rtp_packet_len
+        ,signal_upload.rtp_packet
+        ,signal_upload.relation_id
+        ,signal_upload.signal_type
+        ,signal_upload.signal_packet_len
+        ,signal_upload.signal_packet
+        ,signal_upload.malformed_type
+        ,signal_upload.packetlen
+        ,signal_upload.packet
+
+        FROM
+        signal_upload
+        <where>
+            <if test="param.id != null and param.id != ''">
+                AND signal_upload.id = #{param.id}
+            </if>
+            <if test="param.createBy != null and param.createBy != ''">
+                AND signal_upload.create_by = #{param.createBy}
+            </if>
+            <if test="param.updateBy != null and param.updateBy != ''">
+                AND signal_upload.update_by = #{param.updateBy}
+            </if>
+            <if test="param.sysOrgCode != null and param.sysOrgCode != ''">
+                AND signal_upload.sys_org_code = #{param.sysOrgCode}
+            </if>
+            <if test="param.facId != null ">
+                AND signal_upload.fac_id = #{param.facId}
+            </if>
+            <if test="param.uploadType != null ">
+                AND signal_upload.upload_type = #{param.uploadType}
+            </if>
+            <if test="param.traceUser != null and param.traceUser != ''">
+                AND signal_upload.trace_user like concat('%',#{param.traceUser},'%')
+            </if>
+            <if test="param.msgType != null ">
+                AND signal_upload.msg_type = #{param.msgType}
+            </if>
+            <if test="param.msgName != null and param.msgName != ''">
+                AND signal_upload.trace_name like concat('%',#{param.msgName},'%')
+            </if>
+            <if test="param.trafficeDirection != null ">
+                AND signal_upload.traffice_direction = #{param.trafficeDirection}
+            </if>
+            <if test="param.codec != null ">
+                AND signal_upload.codec = #{param.codec}
+            </if>
+            <if test="param.relationId != null ">
+                AND signal_upload.relation_id = #{param.relationId}
+            </if>
+            <if test="param.signalType != null ">
+                AND signal_upload.signal_type = #{param.signalType}
+            </if>
+            <if test="param.malformedType != null ">
+                AND signal_upload.malformed_type = #{param.malformedType}
+            </if>
+            <if test="param.startTime != null and param.startTime != '' ">
+                AND signal_upload.create_time &gt;= #{param.startTime}
+            </if>
+            <if test="param.beginTime != null and param.endTime != '' ">
+                AND signal_upload.create_time between #{param.beginTime} and #{param.endTime}
+            </if>
+            <if test="param.isRtp != null and param.isRtp == 0 ">
+                AND signal_upload.upload_type in (1,3,4)
+            </if>
+        </where>
+        ORDER BY
+        signal_upload.create_time DESC
+    </select>
+
+    <select id="getCdrByRelationId" resultType="org.jeecg.modules.demo.signalUpload.entity.SignalUpload">
+        SELECT
+        signal_upload.id
+        ,signal_upload.create_by
+        ,signal_upload.create_time
+        ,signal_upload.update_by
+        ,signal_upload.update_time
+        ,signal_upload.sys_org_code
+        ,signal_upload.ver
+        ,signal_upload.fac_id
+        ,signal_upload.upload_type
+        ,signal_upload.upload_length
+        ,signal_upload.trace_user
+        ,signal_upload.msg_type
+        ,signal_upload.msg_name
+        ,signal_upload.direction
+        ,signal_upload.signal_length
+        ,signal_upload.sigal
+        ,signal_upload.traffice_direction
+        ,signal_upload.codec
+        ,signal_upload.rtp_packet_len
+        ,signal_upload.rtp_packet
+        ,signal_upload.relation_id
+        ,signal_upload.signal_type
+        ,signal_upload.signal_packet_len
+        ,signal_upload.signal_packet
+        ,signal_upload.malformed_type
+        ,signal_upload.packetlen
+        ,signal_upload.packet
+
+        FROM
+        signal_upload
+        WHERE
+         signal_upload.relation_id = #{id}
+
+        ORDER BY
+        signal_upload.create_time
+    </select>
+
+
+    <select id="currentUser" resultType="org.jeecg.modules.demo.signalUpload.entity.SignalUpload">
+        SELECT
+        signal_upload.id
+        ,signal_upload.create_by
+        ,signal_upload.create_time
+        ,signal_upload.update_by
+        ,signal_upload.update_time
+        ,signal_upload.sys_org_code
+        ,signal_upload.ver
+        ,signal_upload.fac_id
+        ,signal_upload.upload_type
+        ,signal_upload.upload_length
+        ,signal_upload.trace_user
+        ,signal_upload.msg_type
+        ,signal_upload.msg_name
+        ,signal_upload.direction
+        ,signal_upload.signal_length
+        ,signal_upload.sigal
+        FROM
+        signal_upload
+        <where>
+            signal_upload.upload_type = 1
+            <if test="param.id != null and param.id != ''">
+                AND signal_upload.id = #{param.id}
+            </if>
+            <if test="param.createBy != null and param.createBy != ''">
+                AND signal_upload.create_by = #{param.createBy}
+            </if>
+            <if test="param.updateBy != null and param.updateBy != ''">
+                AND signal_upload.update_by = #{param.updateBy}
+            </if>
+            <if test="param.sysOrgCode != null and param.sysOrgCode != ''">
+                AND signal_upload.sys_org_code = #{param.sysOrgCode}
+            </if>
+            <if test="param.facId != null ">
+                AND signal_upload.fac_id = #{param.facId}
+            </if>
+            <if test="param.uploadType != null ">
+                AND signal_upload.upload_type = #{param.uploadType}
+            </if>
+            <if test="param.traceUser != null and param.traceUser != ''">
+                AND signal_upload.trace_user like concat('%',#{param.traceUser},'%')
+            </if>
+            <if test="param.msgType != null ">
+                AND signal_upload.msg_type = #{param.msgType}
+            </if>
+            <if test="param.msgName != null and param.msgName != ''">
+                AND signal_upload.trace_name like concat('%',#{param.msgName},'%')
+            </if>
+            <if test="param.trafficeDirection != null ">
+                AND signal_upload.traffice_direction = #{param.trafficeDirection}
+            </if>
+            <if test="param.codec != null ">
+                AND signal_upload.codec = #{param.codec}
+            </if>
+            <if test="param.relationId != null ">
+                AND signal_upload.relation_id = #{param.relationId}
+            </if>
+            <if test="param.signalType != null ">
+                AND signal_upload.signal_type = #{param.signalType}
+            </if>
+            <if test="param.malformedType != null ">
+                AND signal_upload.malformed_type = #{param.malformedType}
+            </if>
+            <if test="param.startTime != null and param.startTime != '' ">
+                AND signal_upload.create_time &gt;= #{param.startTime}
+            </if>
+            <if test="param.beginTime != null and param.endTime != '' ">
+                AND signal_upload.create_time between #{param.beginTime} and #{param.endTime}
+            </if>
+        </where>
+        ORDER BY
+        signal_upload.create_time
+    </select>
+</mapper>
