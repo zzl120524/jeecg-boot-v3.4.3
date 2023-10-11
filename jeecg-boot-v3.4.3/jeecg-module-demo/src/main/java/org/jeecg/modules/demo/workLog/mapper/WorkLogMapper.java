@@ -18,4 +18,5 @@ public interface WorkLogMapper extends BaseMapper<WorkLog> {
 
     Page<WorkLog> pagelist(Page<WorkLog> page,@Param("param") WorkLogVo param);
 
+    void deleteByDate(String deleteDate);
 }

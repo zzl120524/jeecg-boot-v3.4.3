@@ -29,4 +29,10 @@
         work_log.create_time DESC
     </select>
 
+    <delete id="deleteByDate">
+        delete from work_log
+        where work_log.create_time &lt; #{deleteDate}
+    </delete>
+
+
 </mapper>

@@ -10,3 +10,4 @@ ftpHost: 192.168.10.11
 ftpPort: 21
 ftpPath: D:\var\ftp\ftpuser\upload
 #ftpPath: /var/ftp/ftpuser/upload
+deleteWorkLogDay: 30
